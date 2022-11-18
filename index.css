@@ -30,12 +30,38 @@ body {
     border-top-left-radius: 20px;
 }
 
-.card__name {
-text-align: center;
+.card__name, h1 {
+    text-align: center;
 }
 
 .card__name, p {
     margin-left: 15px;
     margin-right: 15px;
     overflow-wrap: anywhere;
+}
+
+@media (max-width: 767px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
+    .cards-container {
+        justify-content: center;
+    }
+    .card {
+        width: 80%;
+    }    
+}
+
+@media (min-width: 767px) and (max-width: 1023px) {
+    .cards-container {
+        column-gap: 50px;
+        justify-content: center;
+    }
+    .card {
+        width: 40%;
+    }  
 }
