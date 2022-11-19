@@ -19,6 +19,7 @@ body {
 
 .card {
     width: 45%;
+    width: 45%;
     border: 1px solid grey;
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -43,7 +44,6 @@ p {
 p {
     font-size: 18px;
 }
-
 
 
 /* стили для рейтинга */
