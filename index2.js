@@ -59,71 +59,35 @@ const jsonHeroes = `[{
 let heroes = JSON.parse(jsonHeroes);
 console.log(heroes);
 
-//отрисовка карточек
-for (let hero of heroes) {
-    const container = document.querySelector('.cards-container');
-    console.log(container);
 
+function createCardList(container, obj) {
+    console.log(obj);
+    container.append(createCard(obj));
+}
+
+function createCard(obj) {
     const divCard = document.createElement('div');
     divCard.classList.add('card');
-    container.append(divCard);
 
-    const img = document.createElement('img');
-    img.classList.add('img');
-    let imgSrc = document.createAttribute('src');
-    imgSrc.value = hero.url;
-    img.setAttributeNode(imgSrc);
-    divCard.append(img);
+    // for (key in obj) {
 
-    const h2 = document.createElement('h2');
-    h2.classList.add('card__name');
-    h2.textContent = hero.name;
-    divCard.append(h2);
+    divCard.insertAdjacentHTML('beforeend', `<img class="img" src="${obj.url}"></img>`);
 
-    const pAlter = document.createElement('p');
-    pAlter.textContent = `Альтер-эго: ${hero.alter}`;
-    divCard.append(pAlter);
+    divCard.insertAdjacentHTML('beforeend', `<h2 class="card__name">${obj.name}</h2>`);
 
-    const pOccupation = document.createElement('p');
-    pOccupation.textContent = `Род деятельности: ${hero.occupation}`;
-    divCard.append(pOccupation);
+    divCard.insertAdjacentHTML('beforeend', `<p><span class="bold">Альтер-эго:</span> ${obj.alter}</p>`);
 
-    const pPower = document.createElement('p');
-    pPower.textContent = `Суперсилы: ${hero.power}`;
-    divCard.append(pPower);
+    divCard.insertAdjacentHTML('beforeend', `<p><span class="bold">Род деятельности: </span> ${obj.occupation}`);
 
-    const pDescr = document.createElement('p');
-    pDescr.textContent = `Подробнее: ${hero.description}`;
-    divCard.append(pDescr);
+    divCard.insertAdjacentHTML('beforeend', `<p><span class="bold">Суперсилы: </span> ${obj.power}`);
+
+    divCard.insertAdjacentHTML('beforeend', `<p><span class="bold">Подробнее: </span> ${obj.description}`);
+
+    // }
+
+    return divCard;
 }
 
+let container = document.querySelector('.cards-container');
 
-//обработка оценки
-const input = document.querySelectorAll('input');
-const form = document.querySelector('form');
-
-//проверяем, сохранена ли оценка в localStorage
-document.addEventListener('DOMContentLoaded', function () {
-    let showRating = localStorage.getItem('rating');
-
-    if (showRating !== null) { //если оценка сохранена, выводим её пока в консоль
-        console.log(showRating);
-    }
-});
-
-//получаем значение рейтинга
-function setRating() {
-    let rating;
-    for (let el of input) {
-        if (el.checked) {
-            rating = el.value;
-            console.log(rating);
-
-            localStorage.setItem('rating', rating);
-        }
-    }
-    return rating;
-
-}
-
-form.addEventListener('click', setRating);
+createCardList(container, ...heroes);
