@@ -59,17 +59,17 @@ const jsonHeroes = `[{
 let heroes = JSON.parse(jsonHeroes);
 console.log(heroes);
 
-
 function createCardList(container, obj) {
-    console.log(obj);
-    container.append(createCard(obj));
+    for (let key in obj) {
+        container.append(createCard(obj[key]));
+    }
 }
 
 function createCard(obj) {
     const divCard = document.createElement('div');
     divCard.classList.add('card');
 
-    // for (key in obj) {
+    // for (let key in obj) {
 
     divCard.insertAdjacentHTML('beforeend', `<img class="img" src="${obj.url}"></img>`);
 
@@ -90,4 +90,4 @@ function createCard(obj) {
 
 let container = document.querySelector('.cards-container');
 
-createCardList(container, ...heroes);
+createCardList(container, heroes);
