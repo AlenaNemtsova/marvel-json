@@ -60,30 +60,28 @@ let heroes = JSON.parse(jsonHeroes);
 console.log(heroes);
 
 function createCardList(container, obj) {
-    for (let key in obj) {
-        container.append(createCard(obj[key]));
-    }
+    obj.forEach(item => {
+        console.log(item);
+        container.append(createCard(item));
+    });
 }
 
-function createCard(obj) {
+function createCard(item) {
+
     const divCard = document.createElement('div');
     divCard.classList.add('card');
 
-    // for (let key in obj) {
+    divCard.insertAdjacentHTML('beforeend', `<img class="img" src="${item.url}"></img>`);
 
-    divCard.insertAdjacentHTML('beforeend', `<img class="img" src="${obj.url}"></img>`);
+    divCard.insertAdjacentHTML('beforeend', `<h2 class="card__name">${item.name}</h2>`);
 
-    divCard.insertAdjacentHTML('beforeend', `<h2 class="card__name">${obj.name}</h2>`);
+    divCard.insertAdjacentHTML('beforeend', `<p><span class="bold">Альтер-эго:</span> ${item.alter}</p>`);
 
-    divCard.insertAdjacentHTML('beforeend', `<p><span class="bold">Альтер-эго:</span> ${obj.alter}</p>`);
+    divCard.insertAdjacentHTML('beforeend', `<p><span class="bold">Род деятельности: </span> ${item.occupation}`);
 
-    divCard.insertAdjacentHTML('beforeend', `<p><span class="bold">Род деятельности: </span> ${obj.occupation}`);
+    divCard.insertAdjacentHTML('beforeend', `<p><span class="bold">Суперсилы: </span> ${item.power}`);
 
-    divCard.insertAdjacentHTML('beforeend', `<p><span class="bold">Суперсилы: </span> ${obj.power}`);
-
-    divCard.insertAdjacentHTML('beforeend', `<p><span class="bold">Подробнее: </span> ${obj.description}`);
-
-    // }
+    divCard.insertAdjacentHTML('beforeend', `<p><span class="bold">Подробнее: </span> ${item.description}`);
 
     return divCard;
 }
